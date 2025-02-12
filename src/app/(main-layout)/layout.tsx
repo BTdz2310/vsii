@@ -4,10 +4,8 @@ import { ThemeProvider } from "src/components/theme-provider";
 
 export default function RootLayout({
   children,
-  auth
 }: Readonly<{
   children: React.ReactNode;
-  auth: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -20,20 +18,16 @@ export default function RootLayout({
         className={`antialiased bg-white dark:bg-dark dark:text-[#eaeaea]`}
         suppressHydrationWarning={true}
       >
-        {auth ? (
-          <main className='min-h-screen font-space-grotesk w-screen'>{children}</main>
-        ): (
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {/* pt-16 */}
-            <main className='min-h-[2000px] font-space-grotesk w-screen'>{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {/* pt-16 */}
+          <main className='min-h-[2000px] font-space-grotesk w-screen'>{children}</main>
         </ThemeProvider>
-        )}
       </body>
     </html>
   );

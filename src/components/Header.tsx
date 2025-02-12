@@ -1,6 +1,5 @@
 'use client'
 import { AlignRight, Moon, Sun } from 'lucide-react'
-import Link from 'next/link'
 // import { Link } from 'next-view-transitions'
 import React from 'react'
 import { useTheme } from 'next-themes'
