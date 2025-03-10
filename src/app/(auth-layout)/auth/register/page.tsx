@@ -8,6 +8,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "src/components/ui/input";
 import Link from "next/link";
 import { ROUTES } from "src/constants/routes";
+import { Tag } from "src/constants/enum";
+import { useRouter } from "next/navigation";
+import { API_ROUTES } from "src/constants/api-routes";
 
 const formSchema = z.object({
   username: z.string().min(6, { message: 'Tên tài khoản tối thiểu phải 6 ký tự!' }),
@@ -24,7 +27,7 @@ const formSchema = z.object({
 })
 
 const Register = () => {
-
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,8 +37,20 @@ const Register = () => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_AUTH_API}${API_ROUTES.REGISTER}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+        fullname: 'Visitor',
+        tags: [Tag["#bóngđá"], Tag["#idol"], Tag["#nhạcsống"]]
+      }),
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
+    if (res.ok) router.push(ROUTES.LOGIN)
   }
 
   return (
@@ -104,7 +119,7 @@ const Register = () => {
           >
             Đăng ký
           </Button>
-          
+
         </form>
       </Form>
     </>

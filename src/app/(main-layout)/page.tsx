@@ -50,9 +50,7 @@ const Home = async () => {
 
 
 async function getMatchesResult() {
-  const current = dayjs().format('YYYY-MM-DD')
-  const yesterday = dayjs().subtract(3, "day").format('YYYY-MM-DD')
-  const res = await fetch(`https://api.football-data.org/v4/matches?dateFrom=${yesterday}&dateTo=${current}`, {
+  const res = await fetch(`https://api.football-data.org/v4/matches`, {
     headers: {
       'X-Auth-Token': process.env.NEXT_PUBLIC_FOOTBALL_DATA_API
     },

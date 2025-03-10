@@ -8,6 +8,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "src/components/ui/input";
 import Link from "next/link";
 import { ROUTES } from "src/constants/routes";
+import { API_ROUTES } from "src/constants/api-routes";
+import { useRouter } from "next/navigation";
+import { setCookie } from 'cookies-next';
 
 const formSchema = z.object({
   username: z.string(),
@@ -15,7 +18,7 @@ const formSchema = z.object({
 })
 
 const Login = () => {
-
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,8 +27,20 @@ const Login = () => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_AUTH_API}${API_ROUTES.LOGIN}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+      }),
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
+    const json = await res.json()
+    setCookie('cookie-vsii', json.accessToken)
+    if (res.ok) router.push(ROUTES.HOME)
   }
 
   return (
@@ -88,7 +103,7 @@ const Login = () => {
           >
             Đăng nhập
           </Button>
-          
+
         </form>
       </Form>
     </>

@@ -83,3 +83,9 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.maincontent{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

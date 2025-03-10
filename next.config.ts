@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdnphoto.dantri.com.vn',
       },
+      {
+        protocol: 'https',
+        hostname: 'static-images.vnncdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
 };

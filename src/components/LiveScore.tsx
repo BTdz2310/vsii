@@ -24,7 +24,7 @@ const LiveScore = ({ data }) => {
     <div className='bg-dark dark:bg-white text-[#eaeaea] dark:text-dark px-12 py-12 z-10 relative flex gap-6 flex-col'>
       <h3 className='font-bold text-2xl uppercase tracking-wider font-quicksand'>Kết quả bóng đá</h3>
       <div className='flex overflow-auto overflow-invisible gap-4'>
-        {data.matches.reverse().map((match, index) => (
+        {(data.matches ?? []).reverse().map((match, index) => (
           <div key={index} className='shrink-0 flex flex-col gap-2 !border-[gray] shadow-lg border-[1px] bg-[#1a1a1a] dark:bg-[#f0f0f0] px-6 py-2 rounded-2xl'>
             <div className='flex justify-between items-center h-[32px]'>
               {match.status === 'TIMED' ? (

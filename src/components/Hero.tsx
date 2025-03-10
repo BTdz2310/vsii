@@ -2,11 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const hardLink = "";
+const hardLink = "/article/1";
 
 export const data = [
   {
-    img: "https://cdnphoto.dantri.com.vn/YtZHrxZrSoJuu04aVpENsE5t0Gc=/zoom/1032_688/2025/02/12/202502120823509535z63093559605879fd4e835f614214bf8c7d4699ecb26dc-edited-1739324036159.jpeg",
+    img: "https://res.cloudinary.com/dmcrzul2v/image/upload/v1739836123/ueiadh0901xh4dqgidmt.jpg",
     title: "Đề xuất bổ sung trường hợp tạm đình chỉ nhiệm vụ đại biểu Quốc hội",
     tag: ["Chính trị"],
     date: "11 Th02 2025",
